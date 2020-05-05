@@ -10,13 +10,20 @@
       <button v-on:click="onclick">
         Click!
       </button>
+      <hello-component></hello-component>
       <p>
         {{ now }}
       </p>
       <p v-model> {{ message }}</p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
     <script language="javascript" type="text/javascript">
+
+    Vue.component ("hello-component",{
+      template: "<p>hello</p>"
+    })
+    
       var app = new Vue({
         el: "#app",
         data: {

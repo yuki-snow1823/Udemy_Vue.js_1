@@ -13,6 +13,13 @@
     <p v-if="toggle">
     <a v-bind:href="url">vue-js</a>
     </p>
+    <ul>
+      <li v-for="language in languages">{{ language }}</li> 
+      <!-- ここを囲まないと出てこない -->
+
+      <button v-on:click="clickHandler">ボタン</button>
+      <input type="text" v-model="message">
+    </ul>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
@@ -26,7 +33,13 @@
       data: {
         message: "hello world",
         url: "https://jp.vuejs.org/index.html",
-        toggle: true
+        languages: ["ruby","js"],
+        toggle: true,
+      },
+      methods: {
+        clickHandler(){
+          this.message = "ああああ"
+        }
       }
     })
   </script>

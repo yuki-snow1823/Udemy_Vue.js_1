@@ -30,6 +30,9 @@
       }.bind(this)) // プロパティにアクセス
       // 「bind(this)を指定した場合」
       // this.bpi のthisは、Vueオブジェクト（=Vueインスタンス）を意味します。
+      .catch(function(error){
+        console.log(error)
+      })
     }
     })
   </script>

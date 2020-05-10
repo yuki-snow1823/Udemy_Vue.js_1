@@ -5,8 +5,8 @@
   <meta charset="utf-8" />
   <title>Bitcoin</title>
 </head>
-
 <body>
+  <div id="app"></div>
 
 </div>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -21,6 +21,15 @@
       methods: {
       },
     mounted: function() {
+      axios.get("https://api.coindesk.com/v1/bpi/currentprice.json")
+      .then(function(response){
+        // responseにaxiosでアクセスしたデータが入ってくる
+        console.log(response.data.bpi)
+        console.log(response.data.bpi.USD.rate_float)
+        this.bpi = response.data.bpi
+      }.bind(this)) // プロパティにアクセス
+      // 「bind(this)を指定した場合」
+      // this.bpi のthisは、Vueオブジェクト（=Vueインスタンス）を意味します。
     }
     })
   </script>

@@ -6,17 +6,25 @@
   <title>Bitcoin</title>
 </head>
 <body>
-  <div id="app"></div>
-
+  <div id="app">
+    <h2>Bitcoin Price</h2>
+    <ul>
+      <li v-for="(rate, currency) in bpi"></li>
+      {{ currency }} : {{ rate }}
+    </ul>
+  </div>
 </div>
+<!-- main.jsなどよりも先に読み込ませる -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <!-- main.jsなどよりも先に読み込ませる -->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script language="javascript" type="text/javascript">
   var app = new Vue({
       el: '#app',
       data: {
-        bpi: null
+        bpi: {
+          currency: null,
+          rate: null
+          }
       },
       methods: {
       },

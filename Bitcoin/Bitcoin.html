@@ -3,13 +3,14 @@
 
 <head>
   <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="./Bitcoin.css">
   <title>Bitcoin</title>
 </head>
 
 <body>
   <div id="app">
     <h2>Bitcoin Price</h2>
-    <ul>
+    <ul v-cloak>
       <li v-for="(rate, currency) in bpi">
         {{ currency }} : {{ rate.rate_float | currencyDemical}}
       </li>

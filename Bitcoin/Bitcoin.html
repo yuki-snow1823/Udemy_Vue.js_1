@@ -11,7 +11,7 @@
     <h2>Bitcoin Price</h2>
     <ul>
       <li v-for="(rate, currency) in bpi">
-        {{ currency }} : {{ rate.rate_float }}
+        {{ currency }} : {{ rate.rate_float | currencyDemical}}
       </li>
     </ul>
   </div>
@@ -40,6 +40,11 @@
           .catch(function (error) {
             console.log(error)
           })
+      },
+      filters: {
+        currencyDemical(value) {
+          return value.toFixed(2)
+        }
       }
     })
 

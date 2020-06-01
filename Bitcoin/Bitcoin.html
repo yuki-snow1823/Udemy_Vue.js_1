@@ -14,11 +14,14 @@
       Error
     </section>
     <section v-else>
+      <div v-if="loading">Loading</div>
+      <div v-else>
       <ul v-cloak>
         <li v-for="(rate, currency) in bpi">
           {{ currency }} : {{ rate.rate_float | currencyDemical}}
         </li>
       </ul>
+      </div>
     </section>
   </div>
   </div>
@@ -31,7 +34,8 @@
       el: '#app',
       data: {
         bpi: null,
-        hasError: false
+        hasError: false,
+        loading: true
       },
       methods: {},
       mounted: function () {
@@ -48,6 +52,9 @@
             console.log(error);
             this.hasError = true;
           }.bind(this)) // こうしないとthisにアクセスできない
+          .finally (function(){ // 最終的に行われる
+            this.loading = false
+          }.bind(this))
       },
       filters: {
         currencyDemical(value) {

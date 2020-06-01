@@ -10,11 +10,16 @@
 <body>
   <div id="app">
     <h2>Bitcoin Price</h2>
-    <ul v-cloak>
-      <li v-for="(rate, currency) in bpi">
-        {{ currency }} : {{ rate.rate_float | currencyDemical}}
-      </li>
-    </ul>
+    <section v-if="hasError">
+      Error
+    </section>
+    <section v-else>
+      <ul v-cloak>
+        <li v-for="(rate, currency) in bpi">
+          {{ currency }} : {{ rate.rate_float | currencyDemical}}
+        </li>
+      </ul>
+    </section>
   </div>
   </div>
   <!-- main.jsなどよりも先に読み込ませる -->
@@ -25,7 +30,8 @@
     var app = new Vue({
       el: '#app',
       data: {
-        bpi: null
+        bpi: null,
+        hasError: false
       },
       methods: {},
       mounted: function () {
@@ -39,8 +45,9 @@
           // 「bind(this)を指定した場合」
           // this.bpi のthisは、Vueオブジェクト（=Vueインスタンス）を意味します。
           .catch(function (error) {
-            console.log(error)
-          })
+            console.log(error);
+            this.hasError = true;
+          }.bind(this)) // こうしないとthisにアクセスできない
       },
       filters: {
         currencyDemical(value) {

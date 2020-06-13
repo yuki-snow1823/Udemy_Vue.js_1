@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>sample</title>
+</head>
+
+<body>
+  <div id="app">
+    <p>
+      {{ price | numberFormat}}
+    </p>
+    <input type="text" :value="price |numberFormat">
+    <!-- 単一式を含むことができる -->
+    <button v-on:click="clickHandler">クリック</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script language="javascript" type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        price: 29800,
+      },
+      filters: {
+        numberFormat: function(value) {
+          return value.toLocaleString();
+        }
+      },
+      methods: {
+        clickHandler: function(event){
+          this.message = this.message.split("").reverse().join("");
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
